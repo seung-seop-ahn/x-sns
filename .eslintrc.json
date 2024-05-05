@@ -1,3 +1,67 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "react",
+    "prettier",
+    "import"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error", {
+        "printWidth": 100,
+        "tabWidth": 2,
+        "useTabs": false,
+        "semi": false,
+        "singleQuote": true,
+        "quoteProps": "as-needed",
+        "jsxSingleQuote": false,
+        "trailingComma": "all",
+        "bracketSpacing": true,
+        "jsxBracketSameLine": false,
+        "arrowParens": "always",
+        "rangeStart": 0,
+        "parser": "babel-ts",
+        "filepath": "none",
+        "requirePragma": false,
+        "insertPragma": false,
+        "proseWrap": "preserve",
+        "htmlWhitespaceSensitivity": "css",
+        "vueIndentScriptAndStyle": false,
+        "endOfLine": "auto",
+        "embeddedLanguageFormatting": "auto"
+      }
+    ],
+    "import/order": [
+      "error", {
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ],
+    "import/extensions": [
+      "error", "ignorePackages", {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/react-in-jsx-scope": "off"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
 }
