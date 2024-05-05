@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import zLogo from '/public/zlogo.png'
+import twitter from '/public/twitter.jpeg'
 import styles from '@/app/(before-login)/_component/main.module.css'
 
 const Main = () => {
   return (
     <div className={styles.container}>
       <div className={styles.left}>
-        <Image src={zLogo} alt="logo" />
+        <Image src={twitter} alt="logo" />
       </div>
       <div className={styles.right}>
         <h1>{`What's happening now`}</h1>

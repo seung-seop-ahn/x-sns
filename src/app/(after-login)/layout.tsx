@@ -1,8 +1,10 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import LogoutButton from '@/app/(after-login)/_component/LogoutButton'
+import NavMenu from '@/app/(after-login)/_component/NavMenu'
 import styles from '@/app/(after-login)/layout.module.css'
-import Image from 'next/image'
-import zLogo from '/public/zlogo.png'
+import twitter from '/public/twitter.jpeg'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -12,9 +14,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className={styles.leftSectionFixed}>
             <Link className={styles.logo} href={'/home'}>
               <div className={styles.logoPill}>
-                <Image src={zLogo} alt={'logo'} width={40} height={40} />
+                <Image src={twitter} alt={'logo'} width={40} height={40} />
               </div>
             </Link>
+            <nav>
+              <ul>
+                <NavMenu />
+              </ul>
+              <Link className={styles.postButton} href={'/compose/tweet'}>
+                Post
+              </Link>
+            </nav>
+            <LogoutButton />
           </div>
         </section>
       </header>
