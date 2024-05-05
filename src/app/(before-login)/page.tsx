@@ -16,7 +16,7 @@ export default function Home() {
           {`Create account`}
         </Link>
         <h3>{`Already joined?`}</h3>
-        <Link href="/login" className={styles.login}>
+        <Link href="/i/flow/login" className={styles.login}>
           {`Login`}
         </Link>
       </div>
