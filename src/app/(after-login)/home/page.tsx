@@ -5,7 +5,7 @@ import PostForm from '@/app/(after-login)/home/_component/PostForm'
 import TabProvider from '@/app/(after-login)/home/_component/TabProvider'
 import styles from '@/app/(after-login)/home/home.module.css'
 
-const Page = () => {
+const Home = () => {
   return (
     <main className={styles.main}>
       <TabProvider>
@@ -19,4 +19,4 @@ const Page = () => {
     </main>
   )
 }
-export default Page
+export default Home

@@ -8,7 +8,12 @@ import TrendSection from '@/app/(after-login)/_component/TrendSection'
 import styles from '@/app/(after-login)/layout.module.css'
 import twitter from '/public/twitter.jpeg'
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+type Props = {
+  children: React.ReactNode
+  modal: React.ReactNode
+}
+
+const Layout = ({ children, modal }: Props) => {
   return (
     <div className={styles.container}>
       <header className={styles.leftSectionWrapper}>
@@ -59,6 +64,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </section>
         </div>
       </div>
+      {modal}
     </div>
   )
 }
