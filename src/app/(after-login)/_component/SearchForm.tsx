@@ -1,7 +1,13 @@
 import React from 'react'
 import styles from '@/app/(after-login)/_component/right-search-zone.module.css'
 
-const SearchForm = () => {
+type Props = {
+  q?: string
+  f?: string
+  pf?: string
+}
+
+const SearchForm = ({ q, f, pf }: Props) => {
   return (
     <form className={styles.search}>
       <svg width={20} viewBox="0 0 24 24" aria-hidden="true">
