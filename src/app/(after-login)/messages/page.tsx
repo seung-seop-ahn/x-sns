@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <main className={styles.main}>
       <div className={styles.header}>
-        <h3>쪽지</h3>
+        <h3>Message</h3>
       </div>
       <Room />
       <Room />
