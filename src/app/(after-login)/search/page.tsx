@@ -1,7 +1,7 @@
 import React from 'react'
 import BackButton from '@/app/(after-login)/_component/BackButton'
-import Post from '@/app/(after-login)/_component/Post'
 import SearchForm from '@/app/(after-login)/_component/SearchForm'
+import SearchResult from '@/app/(after-login)/search/_component/SearchResult'
 import Tab from '@/app/(after-login)/search/_component/Tab'
 import styles from '@/app/(after-login)/search/search.module.css'
 
@@ -28,18 +28,7 @@ const Page = ({ searchParams }: Props) => {
         <Tab />
       </div>
       <div className={styles.list}>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        {/*<SearchResult searchParams={searchParams} />*/}
+        <SearchResult searchParams={searchParams} />
       </div>
     </main>
   )
