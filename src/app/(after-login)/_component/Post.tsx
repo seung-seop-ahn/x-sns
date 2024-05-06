@@ -3,12 +3,14 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import Link from 'next/link'
 import React from 'react'
 import ActionButtons from '@/app/(after-login)/_component/ActionButtons'
+import PostArticle from '@/app/(after-login)/_component/PostArticle'
 import styles from '@/app/(after-login)/_component/post.module.css'
 
 dayjs.extend(relativeTime)
 
 const Post = () => {
   const target = {
+    postId: 1,
     User: {
       id: 'elonmusk',
       nickname: 'Elon Musk',
@@ -19,7 +21,7 @@ const Post = () => {
     Images: [],
   }
   return (
-    <article className={styles.post}>
+    <PostArticle post={target}>
       <div className={styles.postWrapper}>
         <div className={styles.postUserSection}>
           <Link href={`/${target.User.id}`} className={styles.postUserImage}>
@@ -42,7 +44,7 @@ const Post = () => {
           <ActionButtons />
         </div>
       </div>
-    </article>
+    </PostArticle>
   )
 }
 export default Post
