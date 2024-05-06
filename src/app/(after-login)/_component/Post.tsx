@@ -1,9 +1,11 @@
+import { faker } from '@faker-js/faker'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import Link from 'next/link'
 import React from 'react'
 import ActionButtons from '@/app/(after-login)/_component/ActionButtons'
 import PostArticle from '@/app/(after-login)/_component/PostArticle'
+import PostImages from '@/app/(after-login)/_component/PostImages'
 import styles from '@/app/(after-login)/_component/post.module.css'
 
 dayjs.extend(relativeTime)
@@ -18,7 +20,10 @@ const Post = () => {
     },
     content: 'Hello world!',
     createdAt: new Date(),
-    Images: [],
+    Images: [] as any,
+  }
+  if (Math.random() > 0.5) {
+    target.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() })
   }
   return (
     <PostArticle post={target}>
@@ -40,7 +45,9 @@ const Post = () => {
             <span className={styles.postDate}>{dayjs(target.createdAt).fromNow(true)}</span>
           </div>
           <div>{target.content}</div>
-          <div className={styles.postImageSection}></div>
+          <div>
+            <PostImages post={target} />
+          </div>
           <ActionButtons />
         </div>
       </div>
