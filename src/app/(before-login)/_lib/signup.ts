@@ -1,6 +1,7 @@
 'use server'
 
 import { redirect } from 'next/navigation'
+import { signIn } from '@/auth'
 
 export const signup = async (prevState: any, formData: FormData) => {
   if (!formData.get('id')) {
@@ -29,6 +30,12 @@ export const signup = async (prevState: any, formData: FormData) => {
     }
     console.log(await response.json())
     shouldRedirect = true
+
+    await signIn('credentials', {
+      username: formData.get('id'),
+      password: formData.get('password'),
+      redirect: false,
+    })
   } catch (e) {
     console.error(e)
   }
