@@ -4,6 +4,7 @@ import React from 'react'
 import FollowRecommend from '@/app/(after-login)/_component/FollowRecommend'
 import LogoutButton from '@/app/(after-login)/_component/LogoutButton'
 import NavMenu from '@/app/(after-login)/_component/NavMenu'
+import RQProvider from '@/app/(after-login)/_component/RQProvider'
 import RightSearchZone from '@/app/(after-login)/_component/RightSearchZone'
 import TrendSection from '@/app/(after-login)/_component/TrendSection'
 import styles from '@/app/(after-login)/layout.module.css'
@@ -52,22 +53,24 @@ const Layout = async ({ children, modal }: Props) => {
           </div>
         </section>
       </header>
-      <div className={styles.rightSectionWrapper}>
-        <div className={styles.rightSectionInner}>
-          <main className={styles.main}>{children}</main>
-          <section className={styles.rightSection}>
-            <RightSearchZone />
-            <TrendSection />
-            <div className={styles.followRecommend}>
-              <h3>Follows for you</h3>
-              <FollowRecommend />
-              <FollowRecommend />
-              <FollowRecommend />
-            </div>
-          </section>
+      <RQProvider>
+        <div className={styles.rightSectionWrapper}>
+          <div className={styles.rightSectionInner}>
+            <main className={styles.main}>{children}</main>
+            <section className={styles.rightSection}>
+              <RightSearchZone />
+              <TrendSection />
+              <div className={styles.followRecommend}>
+                <h3>Follows for you</h3>
+                <FollowRecommend />
+                <FollowRecommend />
+                <FollowRecommend />
+              </div>
+            </section>
+          </div>
         </div>
-      </div>
-      {modal}
+        {modal}
+      </RQProvider>
     </div>
   )
 }
