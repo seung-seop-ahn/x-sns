@@ -29,8 +29,8 @@ const Layout = ({ children, modal }: Props) => {
               <ul>
                 <NavMenu />
               </ul>
-              <Link className={styles.postButton} href={'/compose/tweet'}>
-                Post
+              <Link href="/compose/tweet" className={styles.postButton}>
+                <span>post</span>
                 <svg
                   viewBox="0 0 24 24"
                   aria-hidden="true"

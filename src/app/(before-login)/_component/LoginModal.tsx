@@ -1,18 +1,44 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
+import React, { ChangeEventHandler, FormEventHandler, useState } from 'react'
 import styles from '@/app/(before-login)/_component/login.module.css'
 
 const LoginModal = () => {
-  const [id, setId] = useState()
-  const [password, setPassword] = useState()
-  const [message, setMessage] = useState()
-  const onSubmit = () => {}
-  const onClickClose = () => {}
+  const [id, setId] = useState('')
+  const [password, setPassword] = useState('')
+  const [message, setMessage] = useState('')
+  const router = useRouter()
 
-  const onChangeId = () => {}
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault()
 
-  const onChangePassword = () => {}
+    try {
+      await signIn('credentials', {
+        username: id,
+        password: password,
+        redirect: false,
+      })
+    } catch (e) {
+      console.error(e)
+      setMessage('Sign in failed.')
+    }
+
+    router.replace('/home')
+  }
+
+  const onClickClose = () => {
+    router.back()
+  }
+
+  const onChangeId: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setId(e.target.value)
+  }
+
+  const onChangePassword: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setPassword(e.target.value)
+  }
 
   return (
     <div className={styles.modalBackground}>
