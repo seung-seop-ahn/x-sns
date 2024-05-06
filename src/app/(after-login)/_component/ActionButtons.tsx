@@ -4,9 +4,13 @@ import cx from 'classnames'
 import React from 'react'
 import styles from '@/app/(after-login)/_component/post.module.css'
 
-const ActionButtons = () => {
-  const commented = true
-  const reposted = true
+type Props = {
+  white?: boolean
+}
+
+const ActionButtons = ({ white }: Props) => {
+  const commented = false
+  const reposted = false
   const liked = false
 
   const onClickComment = () => {}
@@ -15,7 +19,13 @@ const ActionButtons = () => {
 
   return (
     <div className={styles.actionButtons}>
-      <div className={cx(styles.commentButton, { [styles.commented]: commented })}>
+      <div
+        className={cx(
+          styles.commentButton,
+          { [styles.commented]: commented },
+          white && styles.white,
+        )}
+      >
         <button onClick={onClickComment}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>
@@ -25,7 +35,7 @@ const ActionButtons = () => {
         </button>
         <div className={styles.count}>{1 || ''}</div>
       </div>
-      <div className={cx(styles.repostButton, reposted && styles.reposted)}>
+      <div className={cx(styles.repostButton, reposted && styles.reposted, white && styles.white)}>
         <button onClick={onClickRepost}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>
@@ -35,7 +45,7 @@ const ActionButtons = () => {
         </button>
         <div className={styles.count}>{1 || ''}</div>
       </div>
-      <div className={cx([styles.heartButton, liked && styles.liked])}>
+      <div className={cx([styles.heartButton, liked && styles.liked, white && styles.white])}>
         <button onClick={onClickHeart}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>

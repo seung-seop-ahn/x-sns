@@ -10,7 +10,11 @@ import styles from '@/app/(after-login)/_component/post.module.css'
 
 dayjs.extend(relativeTime)
 
-const Post = () => {
+type Props = {
+  noImage?: boolean
+}
+
+const Post = ({ noImage }: Props) => {
   const target = {
     postId: 1,
     User: {
@@ -20,11 +24,17 @@ const Post = () => {
     },
     content: 'Hello world!',
     createdAt: new Date(),
-    Images: [] as any,
+    Images: [] as any[],
   }
-  if (Math.random() > 0.5) {
-    target.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() })
+  if (Math.random() > 0.5 && !noImage) {
+    target.Images.push(
+      { imageId: 1, link: faker.image.urlLoremFlickr() },
+      { imageId: 2, link: faker.image.urlLoremFlickr() },
+      { imageId: 3, link: faker.image.urlLoremFlickr() },
+      { imageId: 4, link: faker.image.urlLoremFlickr() },
+    )
   }
+
   return (
     <PostArticle post={target}>
       <div className={styles.postWrapper}>
