@@ -1,78 +1,42 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { ChangeEventHandler, FormEventHandler, useState } from 'react'
+import { useFormState, useFormStatus } from 'react-dom'
+import BackButton from '@/app/(before-login)/_component/BackButton'
 import styles from '@/app/(before-login)/_component/signup.module.css'
+import { signup } from '@/app/(before-login)/_lib/signup'
+
+function showMessage(message: string | null | undefined) {
+  if (message === 'no_id') {
+    return 'ID required.'
+  }
+  if (message === 'no_name') {
+    return 'Nickname required.'
+  }
+  if (message === 'no_password') {
+    return 'Password required.'
+  }
+  if (message === 'no_image') {
+    return 'Image required.'
+  }
+  if (message === 'user_exists') {
+    return 'ID already exists.'
+  }
+  return ''
+}
 
 const SignupModal = () => {
-  const [id, setId] = useState('')
-  const [password, setPassword] = useState('')
-  const [nickname, setNickname] = useState('')
-  const [image, setImage] = useState('')
-  const [imageFile, setImageFile] = useState<File>()
-
-  const router = useRouter()
-  const onClickClose = () => {
-    router.back()
-  }
-
-  const onChangeId: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setId(e.target.value)
-  }
-
-  const onChangePassword: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setPassword(e.target.value)
-  }
-  const onChangeNickname: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setNickname(e.target.value)
-  }
-  const onChangeImageFile: ChangeEventHandler<HTMLInputElement> = (e) => {
-    e.target.files && setImageFile(e.target.files[0])
-  }
-
-  const onSubmit: FormEventHandler = (e) => {
-    e.preventDefault()
-    fetch('http://localhost:9090/api/users', {
-      method: 'post',
-      body: JSON.stringify({
-        id,
-        nickname,
-        image,
-        password,
-      }),
-      credentials: 'include',
-    })
-      .then((response: Response) => {
-        console.log(response.status)
-        if (response.status === 200) {
-          router.replace('/home')
-        }
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-  }
+  const [state, formAction] = useFormState(signup, { message: null })
+  const { pending } = useFormStatus()
 
   return (
     <>
       <div className={styles.modalBackground}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
-            <button className={styles.closeButton} onClick={onClickClose}>
-              <svg
-                width={24}
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                className="r-18jsvk2 r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"
-              >
-                <g>
-                  <path d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"></path>
-                </g>
-              </svg>
-            </button>
+            <BackButton />
             <div>Create account</div>
           </div>
-          <form>
+          <form action={formAction}>
             <div className={styles.modalBody}>
               <div className={styles.inputDiv}>
                 <label className={styles.inputLabel} htmlFor="id">
@@ -80,11 +44,13 @@ const SignupModal = () => {
                 </label>
                 <input
                   id="id"
+                  name={'id'}
                   className={styles.input}
                   type="text"
                   placeholder=""
-                  value={id}
-                  onChange={onChangeId}
+                  // value={id}
+                  // onChange={onChangeId}
+                  // required
                 />
               </div>
               <div className={styles.inputDiv}>
@@ -93,11 +59,13 @@ const SignupModal = () => {
                 </label>
                 <input
                   id="name"
+                  name={'name'}
                   className={styles.input}
                   type="text"
                   placeholder=""
-                  value={nickname}
-                  onChange={onChangeNickname}
+                  // value={nickname}
+                  // onChange={onChangeNickname}
+                  required
                 />
               </div>
               <div className={styles.inputDiv}>
@@ -106,11 +74,13 @@ const SignupModal = () => {
                 </label>
                 <input
                   id="password"
+                  name={'password'}
                   className={styles.input}
                   type="password"
                   placeholder=""
-                  value={password}
-                  onChange={onChangePassword}
+                  // value={password}
+                  // onChange={onChangePassword}
+                  required
                 />
               </div>
               <div className={styles.inputDiv}>
@@ -119,17 +89,18 @@ const SignupModal = () => {
                 </label>
                 <input
                   id="image"
+                  name={'image'}
                   className={styles.input}
                   type="file"
                   accept="image/*"
-                  onChange={onChangeImageFile}
+                  // onChange={onChangeImageFile}
+                  // required
                 />
               </div>
             </div>
             <div className={styles.modalFooter}>
-              <button className={styles.actionButton} disabled>
-                Join
-              </button>
+              <button type={'submit'} className={styles.actionButton} disabled={pending}></button>
+              <div className={styles.error}>{showMessage(state?.message)}</div>
             </div>
           </form>
         </div>
