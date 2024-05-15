@@ -2,15 +2,12 @@
 
 import React from 'react'
 import styles from '@/app/(after-login)/_component/follow-recommand.module.css'
+import { User } from '@/model/User'
 
-const FollowRecommend = () => {
+type Prop = { user: User }
+
+const FollowRecommend = ({ user }: Prop) => {
   const onFollow = () => {}
-
-  const user = {
-    id: 'elonmusk',
-    nickname: 'Elon Musk',
-    image: '/yRsRRjGO.jpg',
-  }
 
   return (
     <div className={styles.container}>

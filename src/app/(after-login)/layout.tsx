@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import FollowRecommend from '@/app/(after-login)/_component/FollowRecommend'
+import FollowRecommendSection from '@/app/(after-login)/_component/FollowRecommendSection'
 import LogoutButton from '@/app/(after-login)/_component/LogoutButton'
 import NavMenu from '@/app/(after-login)/_component/NavMenu'
 import RQProvider from '@/app/(after-login)/_component/RQProvider'
@@ -62,9 +63,7 @@ const Layout = async ({ children, modal }: Props) => {
               <TrendSection />
               <div className={styles.followRecommend}>
                 <h3>Follows for you</h3>
-                <FollowRecommend />
-                <FollowRecommend />
-                <FollowRecommend />
+                <FollowRecommendSection />
               </div>
             </section>
           </div>

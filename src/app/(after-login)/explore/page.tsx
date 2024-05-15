@@ -1,6 +1,6 @@
 import React from 'react'
 import SearchForm from '@/app/(after-login)/_component/SearchForm'
-import Trend from '@/app/(after-login)/_component/Trend'
+import TrendSection from '@/app/(after-login)/explore/_component/TrendSection'
 import styles from '@/app/(after-login)/explore/explore.module.css'
 
 const Page = () => {
@@ -11,12 +11,7 @@ const Page = () => {
       </div>
       <div className={styles.trend}>
         <h3>Trends for you</h3>
-        <Trend />
-        <Trend />
-        <Trend />
-        <Trend />
-        <Trend />
-        <Trend />
+        <TrendSection />
       </div>
     </main>
   )
