@@ -40,7 +40,11 @@ const Post = ({ noImage, post }: Props) => {
           </div>
           <div>{target.content}</div>
           <div>
-            <PostImages post={target} />
+            {!noImage && (
+              <div>
+                <PostImages post={target} />
+              </div>
+            )}
           </div>
           <ActionButtons />
         </div>
