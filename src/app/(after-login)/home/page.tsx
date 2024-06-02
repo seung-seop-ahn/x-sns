@@ -9,9 +9,10 @@ import styles from '@/app/(after-login)/home/home.module.css'
 
 const Home = async () => {
   const queryClient = new QueryClient()
-  await queryClient.prefetchQuery({
+  await queryClient.prefetchInfiniteQuery({
     queryKey: ['posts', 'recommends'],
     queryFn: getPostRecommends,
+    initialPageParam: 0,
   })
   const dehydrateState = dehydrate(queryClient)
 
