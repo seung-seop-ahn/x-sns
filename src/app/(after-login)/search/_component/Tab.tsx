@@ -29,7 +29,7 @@ const Tab = () => {
           <div className={styles.tabIndicator} hidden={current === 'new'}></div>
         </div>
         <div onClick={onClickNew}>
-          최신
+          Recent
           <div className={styles.tabIndicator} hidden={current === 'hot'}></div>
         </div>
       </div>
