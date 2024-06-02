@@ -7,7 +7,6 @@ import { getComments } from '@/app/(after-login)/[username]/status/[id]/_lib/get
 import { getSinglePost } from '@/app/(after-login)/[username]/status/[id]/_lib/getSinglePost'
 import styles from '@/app/(after-login)/[username]/status/[id]/post-detail.module.css'
 import BackButton from '@/app/(after-login)/_component/BackButton'
-import Post from '@/app/(after-login)/_component/Post'
 
 type Props = {
   params: { id: string }

@@ -1,21 +1,22 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import React, { useRef, useState } from 'react'
 import styles from '@/app/(after-login)/@modal/(.)compose/tweet/modal.module.css'
 
 const Page = () => {
   const [content, setContent] = useState()
   const imageRef = useRef(null)
+  const { data: me } = useSession()
+  const router = useRouter()
 
   const onSubmit = () => {}
-  const onClickClose = () => {}
+  const onClickClose = () => {
+    router.back()
+  }
   const onClickButton = () => {}
   const onChangeContent = () => {}
-
-  const me = {
-    id: 'seungseopahn',
-    image: '/profile.jpeg',
-  }
 
   return (
     <div className={styles.modalBackground}>
@@ -36,7 +37,7 @@ const Page = () => {
           <div className={styles.modalBody}>
             <div className={styles.postUserSection}>
               <div className={styles.postUserImage}>
-                <img src={me.image} alt={me.id} />
+                <img src={me?.user?.image as string} alt={me?.user?.email as string} />
               </div>
             </div>
             <div className={styles.inputDiv}>
